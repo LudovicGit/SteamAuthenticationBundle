@@ -5,16 +5,15 @@ namespace Soljian\SteamAuthenticationBundle\Security\Firewall;
 use Soljian\SteamAuthenticationBundle\Security\Authentication\Token\SteamUserToken;
 use Soljian\SteamAuthenticationBundle\Security\Authentication\Validator\RequestValidatorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 
 /**
  * @author Soljian
  */
-class SteamListener implements ListenerInterface
+class SteamListener
 {
     /**
      * @var AuthenticationManagerInterface
@@ -60,10 +59,7 @@ class SteamListener implements ListenerInterface
         $this->requestValidator = $requestValidator;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function handle(GetResponseEvent $event)
+    public function __invoke(RequestEvent $event)
     {
         $request = $event->getRequest();
 

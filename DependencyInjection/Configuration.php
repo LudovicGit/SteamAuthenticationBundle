@@ -16,8 +16,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('soljian_steam_authentication');
+        $treeBuilder = new TreeBuilder('soljian_steam_authentication');
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()

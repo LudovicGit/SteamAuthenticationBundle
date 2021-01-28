@@ -96,13 +96,6 @@ abstract class AbstractSteamUser implements SteamUserInterface, UserInterface
     protected $countryCode;
 
     /**
-     * @var array
-     *
-     * @ORM\Column(type="json_array")
-     */
-    protected $roles;
-
-    /**
      * {@inheritdoc}
      */
     public function getSteamId(): int
@@ -332,18 +325,6 @@ abstract class AbstractSteamUser implements SteamUserInterface, UserInterface
     public function eraseCredentials()
     {
         return;
-    }
-    
-    /**
-     * @return array
-     */
-    public function getRoles(): array {
-        $roles = [];
-        foreach ($this->roles as $role) {
-            $roles[] = new Role($role);
-        }
-
-        return $roles;
     }
 
     /**
