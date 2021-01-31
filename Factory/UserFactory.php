@@ -30,7 +30,7 @@ class UserFactory
      *
      * @throws InvalidUserClassException
      */
-    public function getFromSteamApiResponse(array $userData)
+    public function getFromSteamApiResponse(array $userData, $roleDefault)
     {
         $user = new $this->userClass;
         if (!$user instanceof SteamUserInterface) {
@@ -59,6 +59,7 @@ class UserFactory
         $user->setCountryCode(
             isset($userData['loccountrycode']) ? $userData['loccountrycode'] : null
         );
+        $user->addRole($roleDefault);
 
         return $user;
     }

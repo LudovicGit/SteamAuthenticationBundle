@@ -62,7 +62,9 @@ class SteamUserProvider implements UserProviderInterface
         $user = $this->entityManager->getRepository($this->userClass)->findOneBy(['steamId' => $username]);
         $userData = $this->api->loadProfile($username);
         if (null === $user) {
-            $user = $this->userFactory->getFromSteamApiResponse($userData);
+            $roleDefault = $this->entityManager->getRepository("App\Entity\Role")->findOneBy(['name' => "ROLE_USER"]);
+
+            $user = $this->userFactory->getFromSteamApiResponse($userData, $roleDefault);
 
             $this->entityManager->persist($user);
         } else {
