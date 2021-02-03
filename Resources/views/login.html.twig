@@ -5,13 +5,19 @@
     <input type="hidden" name="openid.claimed_id" value="http://specs.openid.net/auth/2.0/identifier_select">
     <input type="hidden" name="openid.return_to" value="{{ steam_authentication_route() }}">
     <input type="hidden" name="openid.realm" value="{{ steam_authentication_route() }}">
-    <button type="submit">
-        {% if btn == 1 %}
-            <img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" />
-        {% elseif btn == 2 %}
-            <img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png" />
-        {% else %}
-            {{ btn }}
-        {% endif %}
-    </button>
+    {% if btn == 3 %}
+        <button type="submit" class="soljian-btn-custom">
+            <i class="fab fa-steam"></i> Connexion
+        </button>
+    {% else %}
+        <button type="submit">
+            {% if btn == 1 %}
+                <img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png" />
+            {% elseif btn == 2 %}
+                <img src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png" />
+            {% else %}
+                {{ btn }}
+            {% endif %}
+        </button>
+    {% endif %}
 </form>
